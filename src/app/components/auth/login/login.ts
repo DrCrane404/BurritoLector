@@ -3,7 +3,7 @@ import { Router, RouterLink } from "@angular/router";
 import { LoginInterface } from 'src/app/models/login-interface';
 import { form, required, FormField } from '@angular/forms/signals';
 import { LoginService } from 'src/app/services/login-service';
-import { jwtDecode } from 'jwt-decode';
+
 
 @Component({
   selector: 'app-login',
@@ -11,9 +11,10 @@ import { jwtDecode } from 'jwt-decode';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
 export class Login {
   loginModel = signal<LoginInterface>({
-    email : '',
+    email: '',
     password: ''
   })
 
@@ -28,26 +29,19 @@ export class Login {
 
   login() {
     this.loginService.login(this.loginModel()).subscribe({
-      next: (response: any) => { // Puedes tiparlo con una interface si lo prefieres
+      next: (response: any) => {
+        // Ya no hace falta guardarToken aquí, el servicio ya lo hizo
 
-        this.loginService.guardarToken(
-        response.access_token,
-        response.user.role
-      );
-
-      if (response.user.role === 'admin') {
-        this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/galeria']);
+        if (response.user.role === 'admin') {
+          this.router.navigate(['/burritoadministrador/dash']);
+        } else {
+          this.router.navigate(['/burritolector/galeria']);
+        }
+      },
+      error: (err) => {
+        console.error('El verdadero error interno es:', err);
+        alert('Ocurrió un error');
       }
-
-    },
-    error: (err) => {
-  console.error('El verdadero error interno es:', err);
-  alert('Ocurrió un error');
-}})
-  
-
-
-}
+    });
+  }
 }

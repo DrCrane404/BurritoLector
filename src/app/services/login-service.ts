@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { LoginInterface } from '../models/login-interface';
 import { jwtDecode } from 'jwt-decode';
 
- export interface LoginResponse {
-   access_token: string;
+export interface LoginResponse {
+  access_token: string;
   user: {
-     id: string;
-     email: string;
+    id: string;
+    email: string;
     role: 'admin' | 'user';
-   };
- }
+  };
+}
 
 
 
@@ -19,7 +19,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   URL = 'https://api-burritolector.onrender.com/auth/login';
 
   login(credentials: LoginInterface): Observable<LoginResponse> {
@@ -45,25 +45,25 @@ export class LoginService {
     localStorage.removeItem("role");
   }
 
-  recuperarToken():string | null {
+  recuperarToken(): string | null {
     return localStorage.getItem("token");
   }
 
-   recuperarRol(): string | null {
-     return localStorage.getItem('role');
-   }
+  recuperarRol(): string | null {
+    return localStorage.getItem('role');
+  }
 
   esAdmin(): boolean {
     return this.recuperarRol() === 'admin';
   }
 
-   esUsuario(): boolean {
-     return this.recuperarRol() === 'user';
+  esUsuario(): boolean {
+    return this.recuperarRol() === 'user';
   }
 
 
-  sesionIniciada():boolean {
-    if (this.recuperarToken()==null)
+  sesionIniciada(): boolean {
+    if (this.recuperarToken() == null)
       return false
     else
       return true
