@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoginInterface } from '../models/login-interface';
+import { jwtDecode } from 'jwt-decode';
 
-export interface LoginResponse {
-  access_token: string;
+ export interface LoginResponse {
+   access_token: string;
   user: {
-    id: string;
-    email: string;
+     id: string;
+     email: string;
     role: 'admin' | 'user';
-  };
-}
+   };
+ }
+
 
 
 @Injectable({
@@ -33,15 +35,14 @@ export class LoginService {
       );
   }
 
-  guardarToken(token: string, role:string) {
+  guardarToken(token: string, role: string) {
     localStorage.setItem("token", token);
-    localStorage.setItem("role",role);
+    localStorage.setItem("role", role);
   }
 
   cerrarSesion() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-
   }
 
   recuperarToken():string | null {
@@ -49,15 +50,15 @@ export class LoginService {
   }
 
    recuperarRol(): string | null {
-    return localStorage.getItem('role');
-  }
+     return localStorage.getItem('role');
+   }
 
   esAdmin(): boolean {
     return this.recuperarRol() === 'admin';
   }
 
-  esUsuario(): boolean {
-    return this.recuperarRol() === 'user';
+   esUsuario(): boolean {
+     return this.recuperarRol() === 'user';
   }
 
 

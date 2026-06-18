@@ -20,11 +20,11 @@
                      <div class="card-body">
                         <div class="edit-profile__body">
                            <div class="form-group mb-25">
-                              <label for="username">Correo Electrónico</label>
-                              <input type="text" class="form-control" type="text" [formField]="loginForm.username"
-                                 id="username" placeholder="tunombre@ejemplo.com">
-                              @if(loginForm.username().touched() && loginForm.username().invalid()){
-                              @for (error of loginForm.username().errors(); track $index) {
+                              <label for="email">Correo Electrónico</label>
+                              <input type="text" class="form-control" type="text" [formField]="loginForm.email"
+                                 id="email" placeholder="tunombre@ejemplo.com">
+                              @if(loginForm.email().touched() && loginForm.email().invalid()){
+                              @for (error of loginForm.email().errors(); track $index) {
                               {{ error.message }}
                               }
                               }
@@ -32,8 +32,10 @@
                            <div class="form-group mb-15">
                               <label for="password-field">contraseña</label>
                               <div class="position-relative">
-                                 <input id="password-field" type="password" class="form-control" name="password"
-                                    placeholder="contraseña">
+
+                                 <input id="password-field" type="password" class="form-control"
+                                    placeholder="contraseña" [formField]="loginForm.password">
+
                                  @if(loginForm.password().touched() && loginForm.password().invalid()){
                                  @for (error of loginForm.password().errors(); track $index) {
                                  {{ error.message }}
@@ -46,7 +48,7 @@
                            <div class="admin-condition">
                               <div class="checkbox-theme-default custom-checkbox ">
                                  <input class="checkbox" type="checkbox" id="check-1">
-                                 
+
                               </div>
                               <a routerLink="/auth/forgot">¿Olvidaste tu contraseña?</a>
                            </div>
