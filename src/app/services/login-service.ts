@@ -21,19 +21,43 @@ export interface LoginResponse {
 export class LoginService {
   constructor(private http: HttpClient) { }
   URL = 'https://api-burritolector.onrender.com/auth/login';
-
-  login(credentials: LoginInterface): Observable<LoginResponse> {
-    return this.http
-      .post<LoginResponse>(this.URL, credentials)
-      .pipe(
-        tap(response => {
-          this.guardarToken(
-            response.access_token,
-            response.user.role
-          );
-        })
-      );
+////////////////////////
+private decodeToken(token: string): any {
+  try {
+    // El payload es la segunda parte del JWT (base64)
+    const payload = token.split('.')[1];
+    return JSON.parse(atob(payload));
+  } catch {
+    return null;
   }
+}
+
+login(credentials: LoginInterface): Observable<any> {
+  return this.http.post<any>(this.URL, credentials).pipe(
+    tap(response => {
+      // El backend devuelve { token }, no { access_token }
+      const token = response.token;
+      const decoded = this.decodeToken(token);
+      const role = decoded?.role ?? 'user';
+
+      this.guardarToken(token, role);
+    })
+  );
+}
+
+/////////////////////////////
+  // login(credentials: LoginInterface): Observable<LoginResponse> {
+  //   return this.http
+  //     .post<LoginResponse>(this.URL, credentials)
+  //     .pipe(
+  //       tap(response => {
+  //         this.guardarToken(
+  //           response.access_token,
+  //           response.user.role
+  //         );
+  //       })
+  //     );
+  // }
 
   guardarToken(token: string, role: string) {
     localStorage.setItem("token", token);

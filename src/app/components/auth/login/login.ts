@@ -27,21 +27,41 @@ export class Login {
 
   }
 
+  ///////////////////////
   login() {
-    this.loginService.login(this.loginModel()).subscribe({
-      next: (response: any) => {
-        // Ya no hace falta guardarToken aquí, el servicio ya lo hizo
+  this.loginService.login(this.loginModel()).subscribe({
+    next: () => {
+      // El rol ya fue guardado en el tap() del servicio
+      const role = localStorage.getItem('role');
 
-        if (response.user.role === 'admin') {
-          this.router.navigate(['/burritoadministrador/dash']);
-        } else {
-          this.router.navigate(['/burritolector/galeria']);
-        }
-      },
-      error: (err) => {
-        console.error('El verdadero error interno es:', err);
-        alert('Ocurrió un error');
+      if (role === 'admin') {
+        this.router.navigate(['burritoadministrador/dash']);
+      } else {
+        this.router.navigate(['/burritolector/galeria']);
       }
-    });
-  }
+    },
+    error: (err) => {
+      console.error('Error:', err);
+      alert('Correo o contraseña incorrectos');
+    }
+  });
+}
+  //////////////////////
+  // login() {
+  //   this.loginService.login(this.loginModel()).subscribe({
+  //     next: (response: any) => {
+  //       // Ya no hace falta guardarToken aquí, el servicio ya lo hizo
+
+  //       if (response.user.role === 'admin') {
+  //         this.router.navigate(['/burritoadministrador/dash']);
+  //       } else {
+  //         this.router.navigate(['/burritolector/galeria']);
+  //       }
+  //     },
+  //     error: (err) => {
+  //       console.error('El verdadero error interno es:', err);
+  //       alert('Ocurrió un error');
+  //     }
+  //   });
+  // }
 }

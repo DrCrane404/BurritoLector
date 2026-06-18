@@ -7,7 +7,7 @@ import { RouterLink } from "@angular/router";
     templateUrl: './libros.html',
     standalone: true,
     imports: [RouterLink],
-    styleUrl: './libros.css',
+    //styleUrl: './libros.css',
 })
 export class Libros {
 
