@@ -28,13 +28,21 @@ export class Login {
   login() {
     this.loginService.login(this.loginModel()).subscribe({
       next: (response) => {
-        console.log(response.user.role)
-        this.loginService.guardarToken(response.access_token, response.user.role);
-        this.router.navigate(['/dash'])
-      },
-      error: (err) => {
-        alert('Correo y/o contraseña incorrectas')
-      },
-    })
-  }
+        this.loginService.guardarToken(
+        response.access_token,
+        response.user.role
+      );
+
+      if (response.user.role === 'admin') {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/dash']);
+      }
+
+    },
+    error: () => {
+      alert('Correo y/o contraseña incorrectas');
+    }
+  })
+}
 }
