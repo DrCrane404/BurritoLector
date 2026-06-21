@@ -25,6 +25,10 @@ export class LibrosService {
     if (params.search) httpParams = httpParams.set('search', params.search);
     if (params.genre)  httpParams = httpParams.set('genre', params.genre);
 
-    return this.http.get<PaginatedResponse<Libro>>(`${environment.apiUrl}/libros`, { params: httpParams });
+    return this.http.get<PaginatedResponse<Libro>>(`${environment.apiUrl}/books`, { params: httpParams });
+  }
+
+  findOne(id: number): Observable<Libro> {
+    return this.http.get<Libro>(`${environment.apiUrl}/books/${id}`);
   }
 }

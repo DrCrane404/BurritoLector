@@ -8,7 +8,7 @@
     <nav class="navbar navbar-light">
         <div class="navbar-left">
             <div class="logo-area">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" routerLink="burritolector/galeria">
                     <img class="dark" src="img/logo-dark.png" alt="logo">
                     <img class="light" src="img/logo-white.png" alt="logo">
                 </a>
@@ -23,10 +23,10 @@
                             <a href="#" class="">Dashboard</a>
                             <ul class="subMenu">
                                 <li class="">
-                                    <a href="galeria.html">Galeria</a>
+                                    <a routerLink="galeria.html">Galeria</a>
                                 </li>
                                 <li class="">
-                                    <a href="afinidad.html">Afinidad</a>
+                                    <a routerLink="afinidad.html">Afinidad</a>
                                 </li>
 
                             </ul>
@@ -813,7 +813,7 @@
                      </a>
                      <ul>
                         <li class="">
-                           <a href="index.html">Tu Perfil</a>
+                           <a routerLink="index.html">Tu Perfil</a>
                         </li>
                         
                         
@@ -827,10 +827,10 @@
                      </a>
                      <ul>
                         <li class="l_sidebar">
-                           <a href="#" data-layout="light">Galeria</a>
+                           <a routerLink="/burritolector/galeria">Galeria</a>
                         </li>
                         <li class="l_sidebar">
-                           <a href="#" data-layout="dark">Afinidad</a>
+                           <a routerLink="/burritolector/afinidad">Afinidad</a>
                         </li>
                         
                        
@@ -843,11 +843,11 @@
                   
                   
                   <li class="">
-                     <a href="sign-up.html">
+                    <a href="javascript:void(0)" (click)="cerrarSesion()">
                         <span class="nav-icon uil uil-sign-out-alt"></span>
                         <span class="menu-text">CERRAR SESIÓN</span>
-                     </a>
-                  </li>
+                    </a>
+                </li>
                </ul>
             </div>
          </div>
