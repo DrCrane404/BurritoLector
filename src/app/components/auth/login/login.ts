@@ -39,11 +39,13 @@ login() {
       try {
         await firstValueFrom(this.loginService.login(this.loginModel()));
         const role = this.loginService.recuperarRol();
-        this.router.navigate([role === 'admin' ? '/admin' : '/galeria']);
-      } catch (err) {
-        this.loginError.set('Credenciales inválidas o error de servidor');
-      }
-    });
+        this.router.navigate([
+        role === 'admin' ? '/burritoadministrador/dash' : '/burritolector/galeria'
+      ]);
+    } catch (err) {
+      this.loginError.set('Credenciales inválidas o error de servidor');
+    }
+  });
   }
 }
 

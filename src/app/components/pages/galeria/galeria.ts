@@ -1,7 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BookService } from 'src/app/services/book-service';
-import { BookInterface } from 'src/app/models/book-interface';
+import { CommonModule } from '@angular/common';
+import { Libro } from 'src/app/models/libro-model';
+import { LibrosService } from 'src/app/services/libros-service';
 
 @Component({
   selector: 'app-galeria',
@@ -27,5 +28,24 @@ export class Galeria {
         this.loading.set(false);
       }
     });
+  }
+
+  siguientePagina(): void {
+    if (this.page() < this.lastPage()) {
+      this.page.update(p => p + 1);
+      this.cargarLibros();
+    }
+  }
+
+  paginaAnterior(): void {
+    if (this.page() > 1) {
+      this.page.update(p => p - 1);
+      this.cargarLibros();
+    }
+  }
+
+  truncar(texto: string | undefined, max = 100): string {
+    if (!texto) return '';
+    return texto.length > max ? texto.slice(0, max) + '...' : texto;
   }
 }
