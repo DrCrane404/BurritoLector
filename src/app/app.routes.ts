@@ -10,6 +10,8 @@ import { Dash } from './components/pages/dash/dash';
 import { Libros } from './components/pages/libros/libros';
 import { adminGuardGuard } from './guards/admin-guard-guard';
 import { authGuardGuard } from './guards/auth-guard-guard';
+import { BurritoLayout } from './layout/burrito-layout/burrito-layout';
+
 
 
 export const routes: Routes = [
@@ -40,6 +42,7 @@ export const routes: Routes = [
     // Rutas para el rol LECTOR / USUARIO
     {
         path: 'burritolector',
+        component: BurritoLayout,
         canActivate: [authGuardGuard],
         children: [
             {
@@ -56,6 +59,7 @@ export const routes: Routes = [
     // Rutas para el rol ADMINISTRADOR
     {
         path: 'burritoadministrador',
+        component: BurritoLayout,
         canActivate: [adminGuardGuard],
         children: [
             {

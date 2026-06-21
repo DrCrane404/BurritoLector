@@ -17,6 +17,12 @@ export class Login {
     email: '',
     password: ''
   })
+ showPassword = signal(false);
+
+  togglePassword() {
+    this.showPassword.update(value => !value);
+  }
+  
 
   loginForm = form(this.loginModel, (schemaPath) => {
     required(schemaPath.email, { message: 'El correo es requerido' });
@@ -26,6 +32,8 @@ export class Login {
   constructor(private loginService: LoginService, private router: Router) {
 
   }
+ 
+
 
   ///////////////////////
   login() {
