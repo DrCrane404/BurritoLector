@@ -14,7 +14,7 @@ export const adminGuardGuard: CanActivateFn = (route, state) => {
 
     if (!loginService.esAdmin()) {
         // Está logueado pero no tiene permiso -> mándalo a SU área, no al login
-        router.navigateByUrl('/burritolector/galeria');
+        router.navigateByUrl('/burritolector/dash');
         return false;
     }
 
