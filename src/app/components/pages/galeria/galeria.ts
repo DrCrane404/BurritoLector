@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Libro } from 'src/app/models/libro-model';
 import { LibrosService } from 'src/app/services/libros-service';
-import { inject } from '@angular/core';
-import { signal } from '@angular/core';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-galeria',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink],
   templateUrl: './galeria.html',
   styleUrl: './galeria.css',
 })
@@ -55,5 +52,10 @@ export class Galeria implements OnInit {
       this.page.update(p => p - 1);
       this.cargarLibros();
     }
+  }
+
+  truncar(texto: string | undefined, max = 100): string {
+    if (!texto) return '';
+    return texto.length > max ? texto.slice(0, max) + '...' : texto;
   }
 }

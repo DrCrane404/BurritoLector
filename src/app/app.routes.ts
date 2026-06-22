@@ -49,6 +49,9 @@ export const routes: Routes = [
                 path: 'galeria',
                 component: Galeria
             },
+            { path: 'libro/:id', 
+              component: Libros 
+            },
             {
                 path: 'afinidad',
                 component: Afinidad
