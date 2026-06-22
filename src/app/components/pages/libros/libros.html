@@ -84,13 +84,25 @@
                               <div class="d-flex align-items-center gap-1">
                                  @for (star of [1,2,3,4,5]; track star) {
                                     <span class="fs-20"
-                                          [style.color]="star <= (libro()!.communityScore || 0) ? '#f4bc22' : '#d0d0d0'">
+                                          style="cursor: pointer;"
+                                          [style.color]="star <= (hoveredStar() || userScore()) ? '#f4bc22' : '#d0d0d0'"
+                                          (mouseenter)="hoveredStar.set(star)"
+                                          (mouseleave)="hoveredStar.set(0)"
+                                          (click)="seleccionarEstrella(star)">
                                        ★
                                     </span>
                                  }
-                                 <span class="ms-2 text-muted fs-13">({{ libro()!.communityScore || 0 }}/5)</span>
+                                 @if (userScore()) {
+                                    <span class="ms-2 text-muted fs-13">({{ userScore() }}/5)</span>
+                                 }
+                                 </div>
+                                 @if (ratingEnviado()) {
+                                    <small class="text-success">¡Calificación guardada!</small>
+                                 }
+                                 @if (ratingError()) {
+                                    <small class="text-danger">{{ ratingError() }}</small>
+                                 }
                               </div>
-                           </div>
 
                            @if (libro()!.adminScore) {
                               <div class="mb-20">

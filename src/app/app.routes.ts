@@ -11,6 +11,8 @@ import { Libros } from './components/pages/libros/libros';
 import { adminGuardGuard } from './guards/admin-guard-guard';
 import { authGuardGuard } from './guards/auth-guard-guard';
 import { BurritoLayout } from './layout/burrito-layout/burrito-layout';
+import { BurritoAdminLayout } from './layout/burrito-admin-layout/burrito-admin-layout';
+import { Recursos } from './components/pages/recursos/recursos';
 
 
 
@@ -46,8 +48,9 @@ export const routes: Routes = [
                 path: 'galeria',
                 component: Galeria
             },
-            { path: 'libro/:id', 
-              component: Libros 
+            { 
+                path: 'libro/:id', 
+                component: Libros 
             },
             {
                 path: 'afinidad',
@@ -63,7 +66,7 @@ export const routes: Routes = [
     // Rutas para el rol ADMINISTRADOR
     {
         path: 'burritoadministrador',
-        component: BurritoLayout,
+        component: BurritoAdminLayout,
         canActivate: [adminGuardGuard],
         children: [
             {
@@ -71,8 +74,8 @@ export const routes: Routes = [
                 component: Dash
             },
             {
-                path: 'libros',
-                component: Libros
+                path: 'recursos',
+                component: Recursos
             }
         ]
     },
