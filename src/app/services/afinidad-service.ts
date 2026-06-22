@@ -29,7 +29,9 @@ export class AfinidadService {
     return this.http
       .get<ApiWrapper<SimilarBookDto[]>>(`${this.base}/afinidad`)
       .pipe(
-        map(res => res.data.map(item => ({
+        map(res => res.data
+          .filter(item => Math.abs(item.otherUserScore - item.userScore) <= 1)
+          .map(item => ({
           bookId:   item.bookId,
           titulo:   item.title,           // title  → titulo
           lector:   item.lector,
