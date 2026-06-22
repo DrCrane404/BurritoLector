@@ -52,14 +52,18 @@ export class Libros implements OnInit {
 
   cargarRatingPrevio(bookId: number) {
     const userId = this.getUserId();
+    console.log('🔍 Buscando rating — bookId:', bookId, 'userId:', userId);
     this.ratingService.findByBookAndUser(bookId, userId).subscribe({
       next: (rating) => {
+        console.log('✅ Rating encontrado:', rating);
         if (rating) {
           this.userScore.set(rating.score);
           this.ratingId.set(rating.id);
         }
       },
-      error: () => {} // si no existe, no pasa nada
+      error: () => {
+        console.log('❌ No se encontró rating previo');
+      }
     });
   }
 
