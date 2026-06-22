@@ -52,7 +52,6 @@ export const routes: Routes = [
             { path: 'libro/:id', 
               component: Libros 
             },
-            
             {
                 path: 'afinidad',
                 component: Afinidad
