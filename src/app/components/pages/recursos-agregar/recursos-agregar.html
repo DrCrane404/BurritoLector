@@ -160,13 +160,13 @@
                                     <!-- URL de imagen -->
                                     <div class="form-group">
                                         <label class="form-label fw-bold">URL de la imagen</label>
-                                        <input type="url" formControlName="coverImage"
+                                        <input type="url" formControlName="coverImageUrl"
                                             class="form-control ih-medium ip-lightradius-xs b-light"
-                                            [class.is-invalid]="coverImage.invalid && coverImage.touched"
+                                            [class.is-invalid]="coverImageUrl.invalid && coverImageUrl.touched"
                                             placeholder="https://ejemplo.com/portada.jpg"
                                             (input)="onUrlChange($event)">
                                         <div class="invalid-feedback">
-                                            <span *ngIf="coverImage.errors?.['pattern']">Ingrese una URL válida.</span>
+                                            <span *ngIf="coverImageUrl.errors?.['pattern']">Ingrese una URL válida.</span>
                                         </div>
                                         <small class="text-muted">Opcional. La imagen se previsualiza al ingresar la URL.</small>
                                     </div>
