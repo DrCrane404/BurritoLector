@@ -14,7 +14,7 @@ const PLACEHOLDER = 'https://placehold.co/300x400?text=Sin+imagen';
   templateUrl: './recursos-editar.html',
   styleUrl: './recursos-editar.css',
 })
-export class RecursosEditar implements OnInit, OnDestroy {
+export class RecursosEditar implements OnInit {
   private fb      = inject(FormBuilder);
   private service = inject(LibrosService);
   private router  = inject(Router);
