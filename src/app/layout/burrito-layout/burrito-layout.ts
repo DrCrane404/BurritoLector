@@ -1,7 +1,11 @@
 import { Component, Renderer2} from '@angular/core';
 import { Router, RouterOutlet, RouterLink } from "@angular/router";
 import { LoginService } from 'src/app/services/login-service';
+import { jwtDecode } from 'jwt-decode';
 
+interface JwtPayload {
+  name?: string;
+}
 
 @Component({
   selector: 'app-burrito-layout',
@@ -9,9 +13,32 @@ import { LoginService } from 'src/app/services/login-service';
   templateUrl: './burrito-layout.html',
   styleUrl: './burrito-layout.css',
 })
+
 export class BurritoLayout {
 
-  constructor(private loginService: LoginService, private router: Router, private renderer: Renderer2) {}
+  constructor(private loginService: LoginService, private router: Router, private renderer: Renderer2 ) {}
+
+  public name: string | null = null;
+
+  ngOnInit(): void {
+    this.extractNameFromStorage();
+  }
+
+  private extractNameFromStorage(): void {
+    try {
+      const token = localStorage.getItem('token');
+      
+      if (token) {
+        const decoded = jwtDecode<JwtPayload>(token);
+        this.name = decoded.name || 'Usuario sin nombre';
+      } else {
+        this.name = 'Invitado';
+      }
+    } catch (error) {
+      this.name = 'Error';
+    }
+  }
+
   cerrarSesion() {
     this.loginService.cerrarSesion();
     this.router.navigate(['/auth/login']);

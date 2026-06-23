@@ -1,118 +1,59 @@
-<div class="mobile-search">
-    <form action="/" class="search-form">
-        <img src="img/svg/search.svg" alt="search" class="svg">
-        <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
-    </form>
-</div>
-<header class="header-top">
+<header class="header-top" style="border-color: #8231D3; border-bottom-style: solid;">
     <nav class="navbar navbar-light">
         <div class="navbar-left">
             <div class="logo-area">
-                <a class="navbar-brand" routerLink="/burritoadministrador/dash">
-                    <img src="img/logo-white.png" style="width: 300px; height: 150px; object-fit: contain;" alt="Logo">
-                </a>
-                <a href="#" class="sidebar-toggle">
-                    <img class="svg" src="img/svg/align-center-alt.svg" alt="img"></a>
-            </div>
-            <div class="top-menu">
-
-                <div class="hexadash-top-menu position-relative">
-                    <ul class="d-flex align-items-center flex-wrap">
-                        <li class="has-subMenu">
-                            <a class="">Dashboard</a>
-                            <ul class="subMenu">
-                                <li class="">
-                                    <a routerLink="/burritoadministrador/dash">Dash</a>
-                                </li>
-                                <li class="">
-                                    <a routerLink="/burritoadministrador/recursos">Libros</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <a class="navbar-brand" routerLink="/burritolector/galeria"><img src="img/logo-white.png" style="border-radius: 10px; box-shadow: 6px 6px 8px rgba(159, 159, 159, 0.15);" alt="Logo"></a>
+                <a class="sidebar-toggle" (click)="toggleSidebar()" style="cursor: pointer;"><img class="svg" src="img/svg/align-center-alt.svg" alt="img"></a>
             </div>
         </div>
-        <!-- ends: navbar-left -->
+
         <div class="navbar-right">
             <ul class="navbar-right__menu">
-                <li class="nav-search">
-                    <a href="#" class="search-toggle">
-                        <i class="uil uil-search"></i>
-                        <i class="uil uil-times"></i>
-                    </a>
-                    <form action="/" class="search-form-topMenu">
-                        <span class="search-icon uil uil-search"></span>
-                        <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..."
-                            aria-label="Search">
-                    </form>
-                </li>
+
                 <!-- Seccion del Usuario -->
                 <li class="nav-author">
                     <div class="dropdown-custom">
-                        <a href="javascript:;" class="nav-item-toggle"><img src="img/author-nav.jpg" alt=""
-                                class="rounded-circle">
-                            <span class="nav-item__title">Admin<i class="las la-angle-down nav-item__arrow"></i></span>
+                        <a href="javascript:;" class="nav-item-toggle"><img src="img/user_avatar.png" alt="" class="rounded-circle">
+                            <span class="nav-item__title">Administrador<i class="las la-angle-down nav-item__arrow"></i></span>
                         </a>
                         <div class="dropdown-parent-wrapper">
                             <div class="dropdown-wrapper">
                                 <div class="nav-author__info">
                                     <div class="author-img">
-                                        <img src="img/author-nav.jpg" alt="" class="rounded-circle">
+                                        <img src="img/user_avatar.png" alt="" class="rounded-circle">
                                     </div>
                                     <div>
-                                        <h6>Rabbi Islam Rony</h6>
-                                        <span>UI Designer</span>
+                                        <h6>Bienvenido!</h6>
+                                        <span>{{ name }}</span>
                                     </div>
                                 </div>
                                 <div class="nav-author__options">
                                     <ul>
                                         <li>
-                                            <a href="">
-                                                <i class="uil uil-user"></i> Profile</a>
+                                            <a routerLink="/burritoadministrador/dash">
+                                                <i class="uil uil-create-dashboard"></i> Dashboard
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="">
-                                                <i class="uil uil-setting"></i>
-                                                Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="uil uil-key-skeleton"></i> Billing</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="uil uil-users-alt"></i> Activity</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="uil uil-bell"></i> Help</a>
+                                            <a routerLink="/burritoadministrador/recursos">
+                                                <i class="uil uil-book-open"></i> Libros
+                                            </a>
                                         </li>
                                     </ul>
-                                    <a href="" class="nav-author__signout">
-                                        <i class="uil uil-sign-out-alt"></i> Sign Out</a>
+                                    <a class="nav-author__signout" href="javascript:void(0)" (click)="cerrarSesion()">
+                                        <i class="uil uil-sign-out-alt"></i> Cerrar Sesión
+                                    </a>
                                 </div>
                             </div>
-                            <!-- ends: .dropdown-wrapper -->
+
                         </div>
                     </div>
                 </li>
-                <!-- ends: .nav-author -->
             </ul>
-            <!-- ends: .navbar-right__menu -->
-            <div class="navbar-right__mobileAction d-md-none">
-                <a href="#" class="btn-search">
-                    <img src="img/svg/search.svg" alt="search" class="svg feather-search">
-                    <img src="img/svg/x.svg" alt="x" class="svg feather-x"></a>
-                <a href="#" class="btn-author-action">
-                    <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical"></a>
-            </div>
+
         </div>
-        <!-- ends: .navbar-right -->
     </nav>
 </header>
-
-
 
 <main class="main-content">
 
@@ -120,31 +61,31 @@
         <div class="sidebar sidebar-collapse" id="sidebar">
             <div class="sidebar__menu-group">
                <ul class="sidebar_nav">
-                  <li class="has-child">
-                     <a href="#" class="">
-                        <span class="nav-icon uil uil-create-dashboard"></span>
-                        <span class="menu-text">Dashboard</span>
-                        <span class="toggle-icon"></span>
-                     </a>
-                     
-                  </li>
-                  <li class="">
-                           <a routerLink="/burritoadministrador/dash">Dash</a>
-                           <a routerLink="/burritoadministrador/recursos">Libros</a>
-                  </li>
-                     
-                  <li class="menu-title mt-30">
-                     <span>SALIDA</span>
-                  </li>
-                  
-                  
-                  <li class="">
-                    <a href="javascript:void(0)" (click)="cerrarSesion()">
-                        <span class="nav-icon uil uil-sign-out-alt"></span>
-                        <span class="menu-text">CERRAR SESIÓN</span>
-                    </a>
-                </li>
-               </ul>
+                    <li>
+                        <a routerLink="/burritoadministrador/dash">
+                            <span class="nav-icon uil uil-create-dashboard"></span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/burritoadministrador/dash">
+                            <span class="nav-icon uil uil-create-dashboard"></span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/burritoadministrador/recursos">
+                            <span class="nav-icon uil uil-book-open"></span>
+                            <span class="menu-text">Libros</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" (click)="cerrarSesion()">
+                            <span class="nav-icon uil uil-sign-out-alt"></span>
+                            <span class="menu-text">Cerrar Sesión</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
          </div>
       </div>
