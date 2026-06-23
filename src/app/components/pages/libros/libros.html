@@ -2,10 +2,10 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-lg-12">
+
             <div class="breadcrumb-main">
-               <h4 class="text-capitalize breadcrumb-title">
-                  Reseña de Libro: {{ libro()?.title }}
-               </h4>
+               <h4 class="text-capitalize breadcrumb-title">Reseña de Libro: {{ libro()?.title }}</h4>
+
                <div class="breadcrumb-action justify-content-center flex-wrap">
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
@@ -14,8 +14,10 @@
                               <i class="uil uil-estate"></i>Galería
                            </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                           {{ libro()?.title }}
+                        <li class="breadcrumb-item">
+                           <a routerLink="/burritolector/afinidad">
+                              <i class="uil uil-book-open"></i>{{ libro()?.title }}
+                           </a>
                         </li>
                      </ol>
                   </nav>
@@ -35,7 +37,7 @@
       } @else if (libro()) {
          <div class="row">
             <div class="col-lg-12">
-               <div class="card border-0 mb-25">
+               <div class="card border-0 mb-10">
                   <div class="card-body p-sm-50 p-30">
                      <div class="row">
 
@@ -125,7 +127,7 @@
                         <div class="row mt-30">
                            <div class="col-12">
                               <h6 class="fw-600 mb-10">Sinopsis</h6>
-                              <p class="text-muted lh-30">{{ libro()!.synopsis }}</p>
+                              <p style="text-align: justify;" class="text-muted lh-30">{{ libro()!.synopsis }}</p>
                            </div>
                         </div>
                      }
