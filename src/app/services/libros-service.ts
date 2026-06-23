@@ -18,6 +18,15 @@ interface ApiWrapper<T> {
   statusCode?: number;
 }
 
+export interface CreateLibroDto {
+  title:         string;
+  author:        string;
+  editor:        string;
+  synopsis:      string;
+  adminScore:    string;
+  coverImageUrl: string | null;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -43,15 +52,15 @@ export class LibrosService {
       .pipe(map(res => res.data));
   }
 
-  update(id: number, formData: FormData): Observable<Libro> {
+  update(id: number, payload: CreateLibroDto): Observable<Libro> {
     return this.http
-      .patch<ApiWrapper<Libro>>(`${environment.apiUrl}/books/${id}`, formData)
+      .patch<ApiWrapper<Libro>>(`${environment.apiUrl}/books/${id}`, payload)
       .pipe(map(res => res.data));
   }
 
-  create(formData: FormData): Observable<Libro> {
+  create(payload: CreateLibroDto): Observable<Libro> {
   return this.http
-    .post<ApiWrapper<Libro>>(`${environment.apiUrl}/books`, formData)
+    .post<ApiWrapper<Libro>>(`${environment.apiUrl}/books`, payload)
     .pipe(map(res => res.data));
   }
 
